@@ -22,8 +22,14 @@ public class UserServiceImp implements UserService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<User> listUsers() {
-        return userDao.listUsers();
+    public List<User> getAllUsers() {
+        List<User> users = userDao.getAllUsers();
+        System.out.println("**All Users**");
+        for (User user : users) {
+            System.out.println(user.toString());
+        }
+        System.out.println("*************");
+        return userDao.getAllUsers();
     }
 
     @Transactional(readOnly = true)
