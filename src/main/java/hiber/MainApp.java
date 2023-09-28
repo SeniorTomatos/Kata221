@@ -6,6 +6,8 @@ import hiber.model.User;
 import hiber.service.UserService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import javax.persistence.NoResultException;
+
 public class MainApp {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context =
@@ -19,8 +21,14 @@ public class MainApp {
 
         userService.getAllUsers();
 
-        System.out.println(userService.getUserByCar("Car 1", 2001));
-        System.out.println(userService.getUserByCar("Car 2", 2002));
+
+        try {
+            System.out.println(userService.getUserByCar("Car 1", 2001));
+            System.out.println(userService.getUserByCar("Car 2", 2002));
+            System.out.println(userService.getUserByCar("Car", 2002));
+        } catch (NoResultException e) {
+            System.out.println("User not found");
+        }
 
         context.close();
     }
