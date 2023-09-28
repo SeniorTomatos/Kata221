@@ -2,7 +2,7 @@ package hiber.config;
 
 import hiber.model.Car;
 import hiber.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -21,10 +21,10 @@ import java.util.Properties;
 @PropertySource("classpath:db.properties")
 @EnableTransactionManagement
 @ComponentScan(value = "hiber")
+@RequiredArgsConstructor
 public class AppConfig {
 
-    @Autowired
-    private Environment env;
+    private final Environment env;
 
     @Bean
     public DataSource getDataSource() {
